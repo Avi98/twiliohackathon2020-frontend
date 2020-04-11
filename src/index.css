@@ -5,6 +5,8 @@ body {
   --base-green-color:hsl(172, 100%, 94%);
   --base-white-color:#ffff;
   --base-green-color:#5acaa6;
+  --base-title-color:#7d9d87;
+
 
   font-size: 10px;
   font-family: "Times New Roman", Times, serif;

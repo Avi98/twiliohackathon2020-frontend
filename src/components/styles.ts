@@ -16,8 +16,9 @@ export const ImageSection = Styled.div`
 
 `
 export const Section = Styled.section`
-        color: #7d9d87;
+        color: var(--base-title-color);
         background-color: var(--base-white-color);
+        margin-left: 2rem;
         >h2{
             font-size: 2.1rem;
             font-weight: 400;
