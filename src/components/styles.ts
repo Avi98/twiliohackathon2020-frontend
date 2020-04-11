@@ -8,6 +8,7 @@ export const Container = Styled.article`
     display:flex;
     flex-direction: colum;
     background-color: var(--base-white-color);
+    
 
 `
 export const ImageSection = Styled.div`
@@ -18,15 +19,37 @@ export const ImageSection = Styled.div`
 export const Section = Styled.section`
         color: var(--base-title-color);
         background-color: var(--base-white-color);
-        margin-left: 2rem;
+        margin-left: 2em;
         >h2{
-            font-size: 2.1rem;
+            font-size: 3.1em;
             font-weight: 400;
         }
         >h3{
-            font-size: 1.4rem;
+            font-size: 2.4em;
             font-weight: 400;
         }
 
 
+`
+export const SubmitButton = Styled.button`
+    background-color: var(--base-title-color);
+    color: var(--base-white-color);
+    padding: 0.5rem 4.5rem;
+    font-size: 1em;
+    font-weight: 200;
+    margin: 40px 0 0 0;
+    cursor: pointer;
+
+`
+export const FormCol = Styled.form`
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    .message{
+        font-size: 0.7em;
+    }.link{
+        font-weight: 600;
+        text-decoration: underline;
+        cursor: pointer;
+    }
 `
