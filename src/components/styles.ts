@@ -1,13 +1,21 @@
 import Styled from 'styled-components/macro';
 
 export const Container = Styled.article`
-    
-    box-shadow: 0 2rem 2.4rem rgba(0,0,0,0.1);
     width: 60%;
     border-radius: 0.8rem;
     display:flex;
-    flex-direction: colum;
+    box-shadow: 0 2rem 2.4rem rgba(0,0,0,0.1);
     background-color: var(--base-white-color);
+
+    @media (max-width: 768px) {
+    --base-title-color: #feeeee;
+    flex-direction: column;
+    background-color: var(--base-green-color);
+    width:100%;
+    height:100%;
+    align-items:center;
+    justify-content:center;
+  }
     
 
 `
@@ -18,8 +26,11 @@ export const ImageSection = Styled.div`
 `
 export const Section = Styled.section`
         color: var(--base-title-color);
-        background-color: var(--base-white-color);
+        background-color: var(--c);
         margin-left: 2em;
+        @media (max-width: 768px) {
+             background-color: var(--base-green-color);
+        }        
         >h2{
             font-size: 3.1em;
             font-weight: 400;
@@ -39,6 +50,10 @@ export const SubmitButton = Styled.button`
     font-weight: 200;
     margin: 40px 0 0 0;
     cursor: pointer;
+    @media (max-width: 768px){
+        background-color: var(--base-button-color);
+        color: var(--base-title-color);
+    }
 
 `
 export const FormCol = Styled.form`

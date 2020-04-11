@@ -6,8 +6,9 @@ body {
   --base-white-color:#ffff;
   --base-green-color:#5acaa6;
   --base-title-color:#7d9d87;
-
-
+  --base-button-color:#7d9d87;
+  
+  
   font-size: 100%;
   font-family: "Times New Roman", Times, serif;
   background-color: hsl(172, 100%, 94%);
