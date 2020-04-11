@@ -3,7 +3,7 @@ import Styled from 'styled-components/macro'
 import { Container, Section, ImageSection, SubmitButton, FormCol } from './styles';
 import TextField from '@material-ui/core/TextField';
 
-export const Login = () => <Container>
+export const SignUp = () => <Container>
     <ImageSection />
     <Section>
 
