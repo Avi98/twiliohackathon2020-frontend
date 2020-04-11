@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { SignUp } from "./components";
+import { LoginSignUp } from "./components";
 import Styled from "styled-components/macro";
 
 const AlginCenter = Styled.div`
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <AlginCenter>
-        <SignUp />
+        <LoginSignUp />
       </AlginCenter>
     );
   }
