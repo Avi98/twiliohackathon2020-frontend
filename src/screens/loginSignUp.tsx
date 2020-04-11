@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
-import { Container, Section, ImageSection, FormCol } from './styles';
-import { SignUp } from './signUp';
-import { Login } from './logIn';
-import { Form, LoginSingUpAction, LoginSingToggleType } from './types';
+import { Container, Section, ImageSection, FormCol } from '../components/styles';
+import { SignUp } from '../components/signUp';
+import { Login } from '../components/logIn';
+import { Form, LoginSingUpAction, LoginSingToggleType } from '../components/types';
 
 
 const initialState = {
