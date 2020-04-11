@@ -1,3 +1,11 @@
+type UPDATE_EMAIL = 'UPDATE_EMAIL'
+type UPDATE_PASSWORD = 'UPDATE_PASSWORD'
+type UPDATE_CONFIRM_PASSWORD = 'UPDATE_CONFIRM_PASSWORD'
+type UPDATE_USERNAME = 'UPDATE_USERNAME'
+type SHOW_LOGIN = 'SHOW_LOGIN'
+type SHOW_SIGNUP = 'SHOW_SIGNUP'
+
+type CommonUpdaterType<T> = (value: T) => void;
 
 export type Form = {
     username: string
@@ -5,12 +13,6 @@ export type Form = {
     password: string
     confirmPassword: string
 }
-type UPDATE_EMAIL = 'UPDATE_EMAIL'
-type UPDATE_PASSWORD = 'UPDATE_PASSWORD'
-type UPDATE_CONFIRM_PASSWORD = 'UPDATE_CONFIRM_PASSWORD'
-type UPDATE_USERNAME = 'UPDATE_USERNAME'
-type SHOW_LOGIN = 'SHOW_LOGIN'
-type SHOW_SIGNUP = 'SHOW_SIGNUP'
 
 export type LoginSingToggleType = {
     showSignUp: boolean
@@ -28,4 +30,14 @@ export type SignUpLoginActionType =
 export type LoginSingUpAction = {
     type: SignUpLoginActionType,
     value: string | any
+}
+
+export interface ILoginSignUp {
+    state: Form & LoginSingToggleType,
+    updateEmail: CommonUpdaterType<string>
+    updatePassword: CommonUpdaterType<string>
+    updateConfirmPassWord: CommonUpdaterType<string>
+    updateUsername: CommonUpdaterType<string>
+    updateShowLogin: CommonUpdaterType<null>
+    updateShowSignUp: CommonUpdaterType<null>
 }

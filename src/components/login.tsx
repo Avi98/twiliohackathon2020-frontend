@@ -1,8 +1,16 @@
-import React from 'react'
-import {  SubmitButton } from './styles';
+import React, { FC } from 'react'
+import { SubmitButton } from './styles';
 import TextField from '@material-ui/core/TextField';
 
-export const Login = () =>
+export const Login:FC<ILoginSignUp> = ({
+    updateEmail,
+    updatePassword,
+    updateConfirmPassWord,
+    updateUsername,
+    updateShowLogin,
+    updateShowSignUp,
+    state
+}) =>
     <>
         <TextField id="userName" label="User Name" />
         <TextField id="password" label="Password" />

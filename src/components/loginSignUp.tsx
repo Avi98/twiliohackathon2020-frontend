@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { Container, Section, ImageSection, FormCol } from './styles';
 import { SignUp } from './signUp';
+import { Login } from './logIn';
 import { Form, LoginSingUpAction, LoginSingToggleType } from './types';
 
 
@@ -65,7 +66,25 @@ export const LoginSignUp = () => {
             <FormCol onSubmit={() => { }}>
                 <h2>Welcome to our community</h2>
                 <h3>Lets create an account</h3>
-                <SignUp />
+                {state.showSignUp ? <SignUp
+                    state={state}
+                    updateEmail={updateEmail}
+                    updatePassword={updatePassword}
+                    updateConfirmPassWord={updateConfirmPassWord}
+                    updateUsername={updateUsername}
+                    updateShowLogin={updateShowLogin}
+                    updateShowSignUp={updateShowSignUp}
+
+                /> : <Login
+                        state={state}
+                        updateEmail={updateEmail}
+                        updatePassword={updatePassword}
+                        updateConfirmPassWord={updateConfirmPassWord}
+                        updateUsername={updateUsername}
+                        updateShowLogin={updateShowLogin}
+                        updateShowSignUp={updateShowSignUp}
+
+                    />}
             </FormCol>
         </Section>
     </Container>)
