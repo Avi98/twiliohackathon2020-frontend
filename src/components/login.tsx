@@ -4,17 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import { ILoginSignUp } from './types';
 
 export const Login: FC<ILoginSignUp> = ({
-    updateEmail,
     updatePassword,
-    updateConfirmPassWord,
     updateUsername,
     updateShowLogin,
-    updateShowSignUp,
     state
 }) =>
     <>
-        <TextField id="userName" label="User Name" />
-        <TextField id="password" label="Password" />
+        <TextField id="userName" label="User Name" value={state.username} onChange={(e:any)=>updateUsername(e.target.value)} />
+        <TextField id="password" label="Password"  value={state.password} onChange={(e:any)=>updatePassword(e.target.value)}/>
         <SubmitButton type='submit'>Login</SubmitButton>
-        <p className='message'>Don't have Account? <span className='link'>Sign Up</span> </p>
+        <p className='message'>Don't have Account? <span className='link' onClick={updateShowLogin}>Sign Up</span> </p>
     </>

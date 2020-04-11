@@ -7,6 +7,7 @@ type SHOW_SIGNUP = 'SHOW_SIGNUP'
 
 type CommonUpdaterType<T> = (value: T) => void;
 
+type SpamOnClick = React.MouseEvent<HTMLSpanElement>
 export type Form = {
     username: string
     email: string
@@ -38,6 +39,6 @@ export interface ILoginSignUp {
     updatePassword: CommonUpdaterType<string>
     updateConfirmPassWord: CommonUpdaterType<string>
     updateUsername: CommonUpdaterType<string>
-    updateShowLogin: CommonUpdaterType<null>
-    updateShowSignUp: CommonUpdaterType<null>
+    updateShowLogin: CommonUpdaterType<SpamOnClick>
+    updateShowSignUp: CommonUpdaterType<SpamOnClick>
 }
