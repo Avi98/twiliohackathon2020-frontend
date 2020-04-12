@@ -1,5 +1,9 @@
 import React, { useReducer } from 'react'
 import { Form, LoginSingToggleType, LoginSingUpAction } from '../components/types'
+import { BASE_URL } from '../config'
+import axios from 'axios'
+import { Api } from '../server/api'
+
 
 const initialState = {
     email: '',
@@ -27,7 +31,28 @@ function reducer(state: Form & LoginSingToggleType, action: LoginSingUpAction) {
 }
 
 export const useLoginSignUp = () => {
+    
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    const submitLoginForm = async () => {
+        const { username, email, password } = state
+        const payload = { username, email, password }
+        try {
+            await Api.post('/register', payload)
+        } catch (e) {
+            console.error('api request error', e)
+        }
+    }
+    const submitSignIn = async () => {
+        debugger
+        const { username, email, password } = state
+        const payload = { username, password }
+        try {
+            const data = await Api.post('/login', payload)
+        } catch (e) {
+            console.error('api login error', e)
+        }
+    }
 
     const updateEmail = (value: string) => dispatch({ type: 'UPDATE_EMAIL', value })
     const updatePassword = (value: string) => dispatch({ type: 'UPDATE_PASSWORD', value })
@@ -45,6 +70,8 @@ export const useLoginSignUp = () => {
         updateUsername,
         updateShowLogin,
         updateShowSignUp,
+        submitLoginForm,
+        submitSignIn
     }
 
 

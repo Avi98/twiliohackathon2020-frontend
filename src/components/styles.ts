@@ -56,7 +56,7 @@ export const SubmitButton = Styled.button`
     }
 
 `
-export const FormCol = Styled.form`
+export const FormCol = Styled.div`
     display:flex;
     flex-direction: column;
     margin-bottom: 1em;

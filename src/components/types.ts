@@ -42,3 +42,9 @@ export interface ILoginSignUp {
     updateShowLogin: CommonUpdaterType<SpamOnClick>
     updateShowSignUp: CommonUpdaterType<SpamOnClick>
 }
+export interface ISignUp extends ILoginSignUp {
+    submitLoginForm:()=> void
+}
+export interface ILogIn extends ILoginSignUp {
+    submitSignIn:()=> void
+}

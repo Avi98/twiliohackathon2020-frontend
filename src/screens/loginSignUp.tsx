@@ -10,11 +10,11 @@ export const LoginSignUp = () => {
         updateConfirmPassWord,
         updateUsername,
         updateShowLogin,
-        updateShowSignUp, state } = useLoginSignUp()
+        updateShowSignUp, state, submitLoginForm, submitSignIn } = useLoginSignUp()
     return (<Container>
         <ImageSection />
         <Section>
-            <FormCol onSubmit={() => { }}>
+            <FormCol>
                 <h2>Welcome to our community</h2>
                 <h3>Lets create an account</h3>
                 {state.showSignUp ? <SignUp
@@ -25,6 +25,7 @@ export const LoginSignUp = () => {
                     updateUsername={updateUsername}
                     updateShowLogin={updateShowLogin}
                     updateShowSignUp={updateShowSignUp}
+                    submitLoginForm={submitLoginForm}
 
                 /> : <Login
                         state={state}
@@ -34,6 +35,7 @@ export const LoginSignUp = () => {
                         updateUsername={updateUsername}
                         updateShowLogin={updateShowLogin}
                         updateShowSignUp={updateShowSignUp}
+                        submitSignIn={submitSignIn}
 
                     />}
             </FormCol>
