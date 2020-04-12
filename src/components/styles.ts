@@ -54,6 +54,13 @@ export const SubmitButton = Styled.button`
         background-color: var(--base-button-color);
         color: var(--base-title-color);
     }
+    &&&{
+        >svg{
+        height: 20px;
+        width: 20px;
+
+    }
+}
 
 `
 export const FormCol = Styled.div`

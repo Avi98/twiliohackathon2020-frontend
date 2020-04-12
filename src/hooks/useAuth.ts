@@ -3,13 +3,17 @@ import { Form, LoginSingToggleType, LoginSingUpAction } from '../components/type
 import { BASE_URL } from '../config'
 import axios from 'axios'
 import { Api } from '../server/api'
+import { useUITrigger } from '../context/uiTrigger'
 
 
-const initialState = {
+const formInitalState = {
     email: '',
     password: '',
     confirmPassword: '',
     username: '',
+}
+const initialState = {
+    ...formInitalState,
     showLogin: false,
     showSignUp: true
 }
@@ -24,6 +28,7 @@ function reducer(state: Form & LoginSingToggleType, action: LoginSingUpAction) {
         //login or Signup
         case 'SHOW_LOGIN': return { ...state, showLogin: true, showSignUp: false }
         case 'SHOW_SIGNUP': return { ...state, showSignUp: true, showLogin: false }
+        case 'RESET_FORM': return { ...state, ...formInitalState }
 
 
         default: return state
@@ -31,28 +36,9 @@ function reducer(state: Form & LoginSingToggleType, action: LoginSingUpAction) {
 }
 
 export const useLoginSignUp = () => {
-    
-    const [state, dispatch] = useReducer(reducer, initialState)
 
-    const submitLoginForm = async () => {
-        const { username, email, password } = state
-        const payload = { username, email, password }
-        try {
-            await Api.post('/register', payload)
-        } catch (e) {
-            console.error('api request error', e)
-        }
-    }
-    const submitSignIn = async () => {
-        debugger
-        const { username, email, password } = state
-        const payload = { username, password }
-        try {
-            const data = await Api.post('/login', payload)
-        } catch (e) {
-            console.error('api login error', e)
-        }
-    }
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const { toggleLoading } = useUITrigger()
 
     const updateEmail = (value: string) => dispatch({ type: 'UPDATE_EMAIL', value })
     const updatePassword = (value: string) => dispatch({ type: 'UPDATE_PASSWORD', value })
@@ -61,6 +47,36 @@ export const useLoginSignUp = () => {
 
     const updateShowLogin = () => dispatch({ type: 'SHOW_LOGIN', value: null })
     const updateShowSignUp = () => dispatch({ type: 'SHOW_SIGNUP', value: null })
+    const resetForm = () => dispatch({ type: 'RESET_FORM', value: null })
+
+    const submitLoginForm = async () => {
+        toggleLoading(true)
+        const { username, email, password } = state
+        const payload = { username, email, password }
+        try {
+            const data = await Api.post('/register', payload)
+            toggleLoading(false)
+            if (data.response.status === '200') {
+                updateShowLogin()
+                resetForm()
+            }
+        } catch (e) {
+            console.error('api request error', e)
+            toggleLoading(false)
+        }
+    }
+    const submitSignIn = async () => {
+        toggleLoading(true)
+        const { username, email, password } = state
+        const payload = { username, password }
+        try {
+            toggleLoading(false)
+            await Api.post('/login', payload)
+        } catch (e) {
+            toggleLoading(false)
+            console.error('api login error', e)
+        }
+    }
 
     return {
         state,
@@ -71,7 +87,7 @@ export const useLoginSignUp = () => {
         updateShowLogin,
         updateShowSignUp,
         submitLoginForm,
-        submitSignIn
+        submitSignIn,
     }
 
 

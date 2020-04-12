@@ -4,6 +4,7 @@ type UPDATE_CONFIRM_PASSWORD = 'UPDATE_CONFIRM_PASSWORD'
 type UPDATE_USERNAME = 'UPDATE_USERNAME'
 type SHOW_LOGIN = 'SHOW_LOGIN'
 type SHOW_SIGNUP = 'SHOW_SIGNUP'
+type RESET_FORM = 'RESET_FORM'
 
 type CommonUpdaterType<T> = (value: T) => void;
 
@@ -26,7 +27,7 @@ export type SignUpLoginActionType =
     UPDATE_CONFIRM_PASSWORD |
     UPDATE_USERNAME |
     SHOW_LOGIN |
-    SHOW_SIGNUP
+    SHOW_SIGNUP | RESET_FORM
 
 export type LoginSingUpAction = {
     type: SignUpLoginActionType,
@@ -43,8 +44,15 @@ export interface ILoginSignUp {
     updateShowSignUp: CommonUpdaterType<SpamOnClick>
 }
 export interface ISignUp extends ILoginSignUp {
-    submitLoginForm:()=> void
+    submitLoginForm: () => void
 }
 export interface ILogIn extends ILoginSignUp {
-    submitSignIn:()=> void
+    submitSignIn: () => void
+}
+
+type buttonType = 'submit' | 'button'
+export interface IButton {
+    onClick: () => void
+    label: string,
+    type?: buttonType
 }
