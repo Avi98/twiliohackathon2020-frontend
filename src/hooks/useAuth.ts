@@ -56,7 +56,8 @@ export const useLoginSignUp = () => {
         try {
             const data = await Api.post('/register', payload)
             toggleLoading(false)
-            if (data.response.status === '200') {
+            debugger
+            if (data.user.token) { // user authenticated
                 updateShowLogin()
                 resetForm()
             }
@@ -71,7 +72,8 @@ export const useLoginSignUp = () => {
         const payload = { username, password }
         try {
             toggleLoading(false)
-            await Api.post('/login', payload)
+            const data = await Api.post('/login', payload)
+            debugger
         } catch (e) {
             toggleLoading(false)
             console.error('api login error', e)

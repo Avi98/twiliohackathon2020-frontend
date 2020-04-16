@@ -4,7 +4,7 @@ import { BASE_URL } from '../config';
 const Axios = axios.create({
     baseURL: `${BASE_URL}/api`,
     timeout: 1000,
-    headers: { 'X-Custom-Header': 'foobar', 'Content-Type': 'application/json' },
+    headers: { 'X-Custom-Header': 'foobar', 'Content-Type': 'application/json'}
 })
 
 interface Fetch {
@@ -14,7 +14,7 @@ interface Fetch {
 }
 class fetch implements Fetch {
     post(url: string, data: object, param = {}) {
-        return Axios.post(url, data, param).then((response) => response.data, (error) => error)
+        return Axios.post(url, data, param).then((response) => response.data, (error) => console.error(error))
     }
     get(url: string, param = {}) {
         return Axios.get(url, param).then((response) => response.data, (error) => error)

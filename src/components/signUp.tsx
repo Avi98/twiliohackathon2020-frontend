@@ -13,8 +13,8 @@ export const SignUp: React.FC<ISignUp> = ({
     submitLoginForm,
     state }) =>
     <>
-        <TextField id="e-mail" label="User Name" value={state.username} onChange={(e: any) => updateUsername(e.target.value)} />
-        <TextField id="e-mail" label="E-mail address" type='email' value={state.email} onChange={(e: any) => updateEmail(e.target.value)} />
+        <TextField id="username" label="User Name" value={state.username} onChange={(e: any) => updateUsername(e.target.value)} />
+        <TextField id="email" label="E-mail address" type='email' value={state.email} onChange={(e: any) => updateEmail(e.target.value)} />
         <TextField id="password" label="Password" type='password' value={state.password} onChange={(e: any) => updatePassword(e.target.value)} />
         <TextField id="password" label="confirm Password" value={state.confirmPassword} onChange={(e: any) => updateConfirmPassWord(e.target.value)} />
         <Button label="Sign Up" onClick={submitLoginForm} />
