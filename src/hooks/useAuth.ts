@@ -56,7 +56,6 @@ export const useLoginSignUp = () => {
         try {
             const data = await Api.post('/register', payload)
             toggleLoading(false)
-            debugger
             if (data.token) { // user authenticated
                 updateShowLogin()
                 setToasterType && setToasterType('success')
@@ -76,7 +75,6 @@ export const useLoginSignUp = () => {
         try {
             toggleLoading(false)
             const data = await Api.post('/login', payload)
-            debugger
         } catch (e) {
             toggleLoading(false)
             console.error('api login error', e)
