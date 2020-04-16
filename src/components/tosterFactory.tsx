@@ -19,6 +19,8 @@ export function Alert(props: AlertProps) {
 
 export function ToasterFactory() {
     const data  = useUITrigger()
+
+    const cleanToasterMessage = () => data.setShowSuccessMessage && data.setShowSuccessMessage('')
     const Toaster = () => {
         switch (data.toasterType) {
             case 'success': return <Alert severity="success">{data.showSuccessMessage}</Alert>
@@ -29,7 +31,7 @@ export function ToasterFactory() {
         }
     }
     return (
-        <Snackbar open={data.showSuccessMessage ===''? false : true} autoHideDuration={6000} >
+        <Snackbar open={data.showSuccessMessage ===''? false : true} autoHideDuration={1000} onClose={cleanToasterMessage}>
             {Toaster()}
         </Snackbar>
     )

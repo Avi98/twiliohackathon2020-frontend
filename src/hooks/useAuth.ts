@@ -38,7 +38,7 @@ function reducer(state: Form & LoginSingToggleType, action: LoginSingUpAction) {
 export const useLoginSignUp = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const { toggleLoading } = useUITrigger()
+    const { toggleLoading, setToasterType,setShowSuccessMessage } = useUITrigger()
 
     const updateEmail = (value: string) => dispatch({ type: 'UPDATE_EMAIL', value })
     const updatePassword = (value: string) => dispatch({ type: 'UPDATE_PASSWORD', value })
@@ -57,8 +57,11 @@ export const useLoginSignUp = () => {
             const data = await Api.post('/register', payload)
             toggleLoading(false)
             debugger
-            if (data.user.token) { // user authenticated
+            if (data.token) { // user authenticated
                 updateShowLogin()
+                setToasterType && setToasterType('success')
+                setShowSuccessMessage && setShowSuccessMessage('Account Created Successfully ')
+                localStorage.setItem('token',data.token );
                 resetForm()
             }
         } catch (e) {
