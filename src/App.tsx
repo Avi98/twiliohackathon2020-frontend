@@ -13,7 +13,7 @@ const AlginCenter = Styled.div`
   height: 100vh;
 `
 
-const Home: FC<{ path: string }> = () => <AlginCenter>
+const Auth: FC<{ path: string }> = () => <AlginCenter>
   <LoginSignUp />
 </AlginCenter>
 
@@ -29,7 +29,10 @@ class App extends Component {
         <>
         <ToasterFactory />
           <Router>
-            <Home path="/" />
+            <Auth path="/" />
+            {/* /home */}
+            {/* /profile */}
+            {/* /product/:id */}
             <PageNotFound path="*" />
           </Router>
         </>
