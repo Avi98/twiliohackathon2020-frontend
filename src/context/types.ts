@@ -12,3 +12,14 @@ export type UITriggerContextType = {
     setToasterType?:UIActions<toasterType>
 
 }
+
+export type PorfileData = {
+    "user": number,
+    "image": null | string,
+    "first_name": string ,
+    "last_name":string,
+    "description": string,
+    "mobile": string,
+    "current_location": string,
+    "user_id": number
+}

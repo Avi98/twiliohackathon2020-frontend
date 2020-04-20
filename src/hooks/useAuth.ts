@@ -1,9 +1,11 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import { Form, LoginSingToggleType, LoginSingUpAction } from '../components/types'
 import { BASE_URL } from '../config'
 import axios from 'axios'
-import { Api } from '../server/api'
+import { Api, AuthApi } from '../server/api'
 import { useUITrigger } from '../context/uiTrigger'
+import { useNavigate } from '@reach/router'
+import { PorfileData } from '../context/types'
 
 
 const formInitalState = {
@@ -38,7 +40,10 @@ function reducer(state: Form & LoginSingToggleType, action: LoginSingUpAction) {
 export const useLoginSignUp = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const { toggleLoading, setToasterType,setShowSuccessMessage } = useUITrigger()
+    const { toggleLoading, setToasterType, setShowSuccessMessage } = useUITrigger()
+    // @ts-ignore
+    const {profileData , setProfileData} = useState<PorfileData | null>(null)
+    const navigate = useNavigate()
 
     const updateEmail = (value: string) => dispatch({ type: 'UPDATE_EMAIL', value })
     const updatePassword = (value: string) => dispatch({ type: 'UPDATE_PASSWORD', value })
@@ -60,7 +65,7 @@ export const useLoginSignUp = () => {
                 updateShowLogin()
                 setToasterType && setToasterType('success')
                 setShowSuccessMessage && setShowSuccessMessage('Account Created Successfully ')
-                localStorage.setItem('token',data.token );
+                localStorage.setItem('token', data.token);
                 resetForm()
             }
         } catch (e) {
@@ -74,8 +79,23 @@ export const useLoginSignUp = () => {
         const payload = { username, password }
         try {
             toggleLoading(false)
-            const data = await Api.post('/login', payload)
-            
+            const data = await Api.post('/login', payload).then(async respose => {
+                if (respose.token) {
+                    const  param = {
+                        headers: {
+                            'Authorization': `token ${respose.token}`
+                        }
+                    }
+                    localStorage.setItem('token', respose.token);
+                    const profile = await Api.get('/profile', param)
+                    if(profile.profile){
+                        setProfileData(profile.profile)
+                        navigate('user/home')
+                    }else{
+                        navigate('user/profile')
+                    }
+                }
+            })
         } catch (e) {
             toggleLoading(false)
             console.error('api login error', e)
@@ -91,6 +111,7 @@ export const useLoginSignUp = () => {
         updateShowSignUp,
         submitLoginForm,
         submitSignIn,
+        profileData
     }
 
 
