@@ -75,12 +75,12 @@ export const useLoginSignUp = () => {
         try {
             toggleLoading(false)
             const data = await Api.post('/login', payload)
+            
         } catch (e) {
             toggleLoading(false)
             console.error('api login error', e)
         }
     }
-
     return {
         state,
         updateEmail,
