@@ -54,7 +54,7 @@ export const ProfileForm:SFC<IProfileProps> = ({formik}) => {
             <h2>Upload Your Profile</h2>
             <FomContainer className={classes.root} onSubmit={formik.handleSubmit}>
                 <div className="image-position">
-                    <ImageUpload />
+                    <ImageUpload formik={formik} />
                 </div>
 
                 <TextField  required id="standard-required" error={Boolean( formik.touched?.first_name &&  formik.errors?.first_name)} helperText={formik.touched?.first_name &&  formik.errors?.first_name}  fullWidth label="First Name" {...formik.getFieldProps('first_name')} />

@@ -1,6 +1,10 @@
 
 import Styled from 'styled-components/macro';
-import dafault from '../assests/default-profile.png'
+import defaultImage from '../assests/default-profile.png'
+
+// const test = ''
+// const imageUrl = (p:{selectedImg?:string})=> p.selectedImg ? `url(${p.selectedImg})` : `url(${defaultImage})`
+
 export const AvatarContainer = Styled.div`
 position:relative;
 max-width: 50px;
@@ -56,12 +60,12 @@ border: 6px solid #F8F8F8;
 box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 `
 
-export const SelectedImg = Styled.div`
+export const SelectedImg = Styled.img`
 border-radius: 100%;
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
-background-image: url(${dafault});
+/* background-image: ; */
 height: 100%;
 width: 100%;
 

@@ -62,3 +62,7 @@ export interface IButton {
 export interface IProfileProps {
     formik: FormikValues
 }
+
+export interface IImageUpload extends IProfileProps{
+
+}
