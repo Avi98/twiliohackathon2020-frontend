@@ -1,10 +1,11 @@
-import React, { Component, FC, ReactChildren, ReactChild, ReactNode } from 'react';
+import React, { Component, FC} from 'react';
 import './App.css';
 import { LoginSignUp, ToasterFactory } from "./components";
 import Styled from "styled-components/macro";
-import { Router, Link, useNavigate } from "@reach/router"
-import { UITrigger, useUITrigger } from './context/uiTrigger';
-import { useLoginSignUp } from './hooks/useAuth';
+import { Router, useNavigate } from "@reach/router"
+import { UITrigger } from './context/uiTrigger';
+import { Profile } from './screens/Profile';
+import { ENV } from './config';
 
 
 const AlginCenter = Styled.div`
@@ -17,16 +18,18 @@ interface IPath {
   path: string,
   children?: any
 }
+console.info('in develop auth routes dont work env:-', ENV)
+
 const UnAuthorize: FC<IPath> = () => <AlginCenter>
   <LoginSignUp path="/" />
 </AlginCenter>
 
-const Profile: FC<IPath> = () => <div>Profile Routes working fine</div>
 const Home: FC<IPath> = () => <h2>home Routes working fine</h2>
 const AuthRoutes: FC<IPath> = ({ path, children }: IPath) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  if (!token) {
+  console.info('in develop auth routes dont work env:-', ENV)
+  if (!token && ENV !== 'develop') {
     navigate('/', { replace: false })
     return <AlginCenter>
       <LoginSignUp path="/" />
@@ -34,7 +37,7 @@ const AuthRoutes: FC<IPath> = ({ path, children }: IPath) => {
   }
   else {
     return (
-      <div>hi
+      <div>
         <AlginCenter>
           {children}
         </AlginCenter>
@@ -65,7 +68,6 @@ class App extends Component {
               <Home path="home" />
             </AuthRoutes>
             <PageNotFound path="*" />
-
           </Router>
         </>
       </UITrigger >

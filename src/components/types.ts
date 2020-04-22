@@ -1,3 +1,5 @@
+import { FormikValues } from "formik"
+
 type UPDATE_EMAIL = 'UPDATE_EMAIL'
 type UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 type UPDATE_CONFIRM_PASSWORD = 'UPDATE_CONFIRM_PASSWORD'
@@ -52,7 +54,11 @@ export interface ILogIn extends ILoginSignUp {
 
 type buttonType = 'submit' | 'button'
 export interface IButton {
-    onClick: () => void
+    onClick?: () => void
     label: string,
     type?: buttonType
+}
+
+export interface IProfileProps {
+    formik: FormikValues
 }
