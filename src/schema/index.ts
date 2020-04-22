@@ -6,11 +6,11 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 export const ProfileSchema = Yup.object({
     first_name: Yup.string()
     .max(20, 'Must be not more than 20 letters')
-    .required(),
+    .required(' name is required'),
     last_name: Yup.string()
     .max(20, 'Must be not more than 20 letters')
-    .required(),
-    mobile: Yup.string().matches(phoneRegExp, 'Invalid mobile number').required(),
+    .required((' name is required')),
+    mobile: Yup.string().matches(phoneRegExp, 'Invalid mobile number').required(('mobile is required')),
     current_location: Yup.string(),
     description: Yup.string(),
 })
