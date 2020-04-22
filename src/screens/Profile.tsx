@@ -16,17 +16,17 @@ const Profile: React.SFC<ProfileProps> = () => {
             last_name: '',
             mobile:'',
             current_location:'',
-            description:''
+            description:'',
+            profileImage: ''
         },
         validationSchema: ProfileSchema,
         onSubmit:(values)=>{
-            debugger
+
         }
     })
     return (
         <ProfileForm 
-          formik={formik}
-          
+          formik={formik}          
         />
     );
 }

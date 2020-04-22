@@ -6,13 +6,13 @@ import defaultImage from '../assests/default-profile.png'
 export const ImageUpload: FC<IImageUpload> = ({ formik }) => {
     const [selectedImage, setSelectedImage] = useState<{file:object, imagePreviewUrl: string | null}>({file:{}, imagePreviewUrl:null})
     const handleFileUpload = (e: any) => {
+        const {setFieldValue} = formik; 
         e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
 
         reader.onloadend = () => {
-            debugger
             if(typeof reader.result === 'string'){
 
                 setSelectedImage({
@@ -21,6 +21,8 @@ export const ImageUpload: FC<IImageUpload> = ({ formik }) => {
                 });
             }
         }
+
+        setFieldValue('image', file)
         reader.readAsDataURL(file)
     }
     return <AvatarContainer>
