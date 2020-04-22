@@ -19,14 +19,25 @@ class fetch implements Fetch {
        this.header = tokenHeaders
     }
    
+    getToken = () =>{
+        if(this.header){
+            this.header = localStorage.getItem('token') ? {
+                headers: {
+                    'Authorization': `token ${localStorage.getItem('token')}`
+                }
+            } : {}
+        }
+    }
     post(url: string, data: object, param = {}) {
+        this.getToken()
         return Axios.post(url, data, { ...this.header,...param}).then((response) => response.data, (error) => console.error(error))
     }
     get(url: string, param = {}) {
-        debugger
+        this.getToken()
         return Axios.get(url, { ...this.header,...param}).then((response) => response.data, (error) => error)
     }
     put(url: string, data: object, param = {}) {
+        this.getToken()
         return Axios.put(url, data, { ...this.header,...param,}).then((response) => response.data, (error) => error)
     }
 
@@ -34,8 +45,8 @@ class fetch implements Fetch {
 
 const tokenHeaders = localStorage.getItem('token') ? {
     headers: {
-        'Authorization': localStorage.getItem('token')
+        'Authorization': `token ${localStorage.getItem('token')}`
     }
 } : {}
 export const Api = new fetch()
-export const AuthApi = new fetch(tokenHeaders)
+export const AuthApi = new fetch(true)

@@ -3,6 +3,7 @@ import { IImageUpload } from "./types";
 import { AvatarContainer, EditIcon, Preview, SelectedImg } from './imageUpload.styles'
 import defaultImage from '../assests/default-profile.png'
 
+/**Todo need to clean this code, make a dumb component  */
 export const ImageUpload: FC<IImageUpload> = ({ formik }) => {
     const [selectedImage, setSelectedImage] = useState<{file:object, imagePreviewUrl: string | null}>({file:{}, imagePreviewUrl:null})
     const handleFileUpload = (e: any) => {
