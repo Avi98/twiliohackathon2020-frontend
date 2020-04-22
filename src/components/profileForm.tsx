@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ProfileForm:SFC<IProfileProps> = ({formik}) => {
     const classes = useStyles();
-    console.log('formik',formik)
     return (
         <CardContainer>
             <h2>Upload Your Profile</h2>
@@ -58,11 +57,11 @@ export const ProfileForm:SFC<IProfileProps> = ({formik}) => {
                     <ImageUpload />
                 </div>
 
-                <TextField  required id="standard-required" fullWidth label="First Name" {...formik.getFieldProps('first_name')} />
-                <TextField required id="standard-required2" fullWidth label="Last Name" {...formik.getFieldProps('last_name')} />
-                <TextField required type="number" id="standard-required" fullWidth label="Mobile" {...formik.getFieldProps('mobile')} />
-                <TextField id="standard-required" fullWidth label="Current Location" {...formik.getFieldProps('current_location')} />
-                <TextField id="standard-required2" fullWidth label="Description" {...formik.getFieldProps('description')} />
+                <TextField  required id="standard-required" error={Boolean( formik.touched?.first_name &&  formik.errors?.first_name)} helperText={formik.touched?.first_name &&  formik.errors?.first_name}  fullWidth label="First Name" {...formik.getFieldProps('first_name')} />
+                <TextField required id="standard-required2" error={Boolean(formik.touched?.last_name &&  formik.errors?.last_name)} helperText={formik.touched?.last_name &&  formik.errors?.last_name} fullWidth label="Last Name" {...formik.getFieldProps('last_name')} />
+                <TextField required type="number" id="standard-required" error={Boolean(formik.touched?.mobile &&  formik.errors?.mobile)} helperText={ formik.touched?.mobile && formik.errors?.mobile} fullWidth label="Mobile" {...formik.getFieldProps('mobile')} />
+                <TextField id="standard-required" fullWidth label="Current Location" error={formik.touched?.current_location &&  Boolean(formik.errors?.current_location)} helperText={formik.touched?.current_location &&  formik.errors?.current_location} {...formik.getFieldProps('current_location')} />
+                <TextField id="standard-required2" fullWidth label="Description" error={Boolean(formik.touched?.description &&  formik.errors?.description)} helperText={formik.touched?.description &&  formik.errors?.description} {...formik.getFieldProps('description')} />
                 <Button label="Submit" type='submit' />
             </FomContainer>
 

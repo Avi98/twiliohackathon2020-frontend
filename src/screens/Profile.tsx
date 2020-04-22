@@ -19,7 +19,9 @@ const Profile: React.SFC<ProfileProps> = () => {
             description:''
         },
         validationSchema: ProfileSchema,
-        onSubmit:(values)=>{console.log('forms', values)}
+        onSubmit:(values)=>{
+            debugger
+        }
     })
     return (
         <ProfileForm 
