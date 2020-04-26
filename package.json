@@ -27,7 +27,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build env REACT_APP_API_URL=https://whispering-hollows-69916.herokuapp.com REACT_APP_BUILD=prod",
+    "build": "REACT_APP_API_URL=https://whispering-hollows-69916.herokuapp.com REACT_APP_BUILD=prod react-scripts build ",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
