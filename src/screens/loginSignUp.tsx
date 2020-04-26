@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{FC} from 'react';
 import { Container, Section, ImageSection, FormCol } from '../components/styles';
 import { SignUp } from '../components/signUp';
 import { Login } from '../components/logIn';
 import { useLoginSignUp } from '../hooks/useAuth';
 
-export const LoginSignUp = () => {
+export const LoginSignUp:FC<{path:string}> = () => {
     const { updateEmail,
         updatePassword,
         updateConfirmPassWord,
