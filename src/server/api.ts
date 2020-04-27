@@ -4,7 +4,12 @@ import { BASE_URL } from '../config';
 const Axios = axios.create({
     baseURL: `${BASE_URL}/api`,
     timeout: 1000,
-    headers: { 'X-Custom-Header': 'foobar', 'Content-Type': 'application/json' }
+    
+    headers: { 
+        'X-Custom-Header': 'foobar', 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+     }  
 })
 
 interface Fetch {

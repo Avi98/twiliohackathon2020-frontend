@@ -23,7 +23,8 @@ const Profile: React.SFC<ProfileProps> = () => {
         validationSchema: ProfileSchema,
         onSubmit: (values) => {
             const form_data = new FormData()
-            values.image && form_data.append('image', values.image, 'image')
+            //@ts-ignore
+            values.image && form_data.append('image', values.image, values.image.name)
             form_data.append('first_name', values.first_name)
             form_data.append('last_name', values.last_name)
             form_data.append('mobile', values.mobile)
