@@ -16,6 +16,11 @@ export const Container = Styled.article`
     align-items:center;
     justify-content:center;
   }
+
+  @media (min-width: 1200px){
+    height:470px;
+
+  }
     
 
 `
@@ -28,6 +33,7 @@ export const Section = Styled.section`
         color: var(--base-title-color);
         background-color: var(--c);
         margin-left: 2em;
+        position: relative;
         @media (max-width: 768px) {
              background-color: var(--base-green-color);
         }        
@@ -62,6 +68,13 @@ export const SubmitButton = Styled.button`
     }
 }
 
+`
+
+export const Footer = Styled.footer`
+    @media (min-width: 768px){
+    position: absolute;
+    bottom:0;
+    }
 `
 export const FormCol = Styled.div`
     display:flex;
