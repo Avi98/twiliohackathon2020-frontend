@@ -1,4 +1,4 @@
-import React, { Component, FC} from 'react';
+import React, { Component, FC } from 'react';
 import './App.css';
 import { LoginSignUp, ToasterFactory } from "./components";
 import Styled from "styled-components/macro";
@@ -6,6 +6,7 @@ import { Router, useNavigate } from "@reach/router"
 import { UITrigger } from './context/uiTrigger';
 import { Profile } from './screens/Profile';
 import { ENV } from './config';
+import { Store } from './context/store';
 
 
 const AlginCenter = Styled.div`
@@ -58,19 +59,21 @@ const PageNotFound: FC<{ path: string }> = () => <AlginCenter>Page Not Found</Al
 class App extends Component {
   render() {
     return (
-      <UITrigger>
-        <>
-          <ToasterFactory />
-          <Router>
-            <UnAuthorize path="/" />
-            <AuthRoutes path="user" >
-              <Profile path="profile" />
-              <Home path="home" />
-            </AuthRoutes>
-            <PageNotFound path="*" />
-          </Router>
-        </>
-      </UITrigger >
+      <Store>
+        <UITrigger>
+          <>
+            <ToasterFactory />
+            <Router>
+              <UnAuthorize path="/" />
+              <AuthRoutes path="user" >
+                <Profile path="profile" />
+                <Home path="home" />
+              </AuthRoutes>
+              <PageNotFound path="*" />
+            </Router>
+          </>
+        </UITrigger >
+      </Store>
     );
   }
 }

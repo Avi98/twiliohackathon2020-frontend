@@ -6,6 +6,7 @@ import { Api, AuthApi } from '../server/api'
 import { useUITrigger } from '../context/uiTrigger'
 import { useNavigate } from '@reach/router'
 import { PorfileData } from '../context/types'
+import { useStore } from '../context/store'
 
 
 const formInitalState = {
@@ -41,9 +42,9 @@ export const useLoginSignUp = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const { toggleLoading, setToasterType, setShowSuccessMessage } = useUITrigger()
-    // @ts-ignore
-    const {profileData , setProfileData} = useState<PorfileData | null>(null)
     const navigate = useNavigate()
+
+    const {updateUserSession, saveUserProfile} = useStore()
 
     const updateEmail = (value: string) => dispatch({ type: 'UPDATE_EMAIL', value })
     const updatePassword = (value: string) => dispatch({ type: 'UPDATE_PASSWORD', value })
@@ -86,11 +87,14 @@ export const useLoginSignUp = () => {
                             'Authorization': `token ${respose.token}`
                         }
                     }
+                    updateUserSession && updateUserSession(respose.user)
                     localStorage.setItem('token', respose.token);
                     const profile = await Api.get('/profile', param)
+                    debugger
                     if(profile.profile){
-                        setProfileData(profile.profile)
-                        navigate('user/home')
+                        saveUserProfile && saveUserProfile(profile.profile)
+                        // setProfileData(profile.profile)
+                        navigate('user/home',{replace: true})
                     }else{
                         navigate('user/profile')
                     }
@@ -111,7 +115,6 @@ export const useLoginSignUp = () => {
         updateShowSignUp,
         submitLoginForm,
         submitSignIn,
-        profileData
     }
 
 

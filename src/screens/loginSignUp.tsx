@@ -3,6 +3,7 @@ import { Container, Section, ImageSection, FormCol } from '../components/styles'
 import { SignUp } from '../components/signUp';
 import { Login } from '../components/logIn';
 import { useLoginSignUp } from '../hooks/useAuth';
+import { useStore } from '../context/store';
 
 export const LoginSignUp:FC<{path:string}> = () => {
     const { updateEmail,
