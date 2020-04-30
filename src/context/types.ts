@@ -12,6 +12,7 @@ export type UITriggerContextType = {
     setShowSuccessMessage?: actions<string>,
     toasterType: toasterType,
     setToasterType?: actions<toasterType>
+    setFullPageLoader: actions<boolean>
 
 }
 
