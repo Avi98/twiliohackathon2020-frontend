@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Container, Section, ImageSection, FormCol, Footer } from '../components/styles';
 import { SignUp } from '../components/signUp';
-import { Login } from '../components/logIn';
+import { Login } from '../components/login';
 import { useLoginSignUp } from '../hooks/useAuth';
 import { useStore } from '../context/store';
 import { Button } from '../components/button';
@@ -31,7 +31,8 @@ export const LoginSignUp: FC<{ path: string }> = () => {
                     updateShowSignUp={updateShowSignUp}
                     submitLoginForm={submitLoginForm}
 
-                /> : <Login
+                /> : 
+                <Login
                         state={state}
                         updateEmail={updateEmail}
                         updatePassword={updatePassword}
@@ -41,7 +42,8 @@ export const LoginSignUp: FC<{ path: string }> = () => {
                         updateShowSignUp={updateShowSignUp}
                         submitSignIn={submitSignIn}
 
-                    />}
+                    />
+                    }
                 <Footer>
 
                     {!state.showSignUp ?
