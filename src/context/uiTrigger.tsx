@@ -1,6 +1,5 @@
 import React, { useContext, createContext, ReactChild, useState } from "react"
 import { UITriggerContextType, toasterType } from "./types";
-import { Severity } from "../components/tosterFactory";
 
 
 
@@ -11,7 +10,8 @@ const UITriggerContext = createContext<UITriggerContextType>({
     setShowSuccessMessage: undefined,
     toasterType: 'info',
     setToasterType: undefined,
-    setFullPageLoader:undefined
+    setFullPageLoader:undefined,
+    fullPageLoader: false
 
 });
 UITriggerContext.displayName = 'UITriggerContext'
@@ -29,8 +29,11 @@ export const UITrigger = ({ children }: { children: ReactChild }) => {
         setShowSuccessMessage,
         toasterType,
         setToasterType,
-        setFullPageLoader
-    }}>{children}</UITriggerContext.Provider>
+        setFullPageLoader,
+        fullPageLoader
+    }}>
+        <div>hellow</div>
+        {children}</UITriggerContext.Provider>
 }
 
 export const useUITrigger = () => {
@@ -42,6 +45,7 @@ export const useUITrigger = () => {
         toasterType,
         setToasterType,
         setFullPageLoader,
+        fullPageLoader
     } = useContext(UITriggerContext);
     const toggleLoading = (value: boolean) => showLoading && showLoading(value)
     return {
@@ -51,6 +55,7 @@ export const useUITrigger = () => {
         setShowSuccessMessage,
         toasterType,
         setToasterType,
-        setFullPageLoader
+        setFullPageLoader,
+        fullPageLoader
     }
 }

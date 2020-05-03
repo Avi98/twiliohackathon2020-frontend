@@ -13,6 +13,7 @@ export type UITriggerContextType = {
     toasterType: toasterType,
     setToasterType?: actions<toasterType>
     setFullPageLoader?: actions<boolean>
+    fullPageLoader: boolean
 
 }
 

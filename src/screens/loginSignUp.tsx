@@ -1,17 +1,20 @@
-import React,{FC} from 'react';
-import { Container, Section, ImageSection, FormCol } from '../components/styles';
+import React, { FC } from 'react';
+import { Container, Section, ImageSection, FormCol, Footer } from '../components/styles';
 import { SignUp } from '../components/signUp';
 import { Login } from '../components/logIn';
 import { useLoginSignUp } from '../hooks/useAuth';
 import { useStore } from '../context/store';
+import { Button } from '../components/button';
+// import { Button } from './button';
 
-export const LoginSignUp:FC<{path:string}> = () => {
+export const LoginSignUp: FC<{ path: string }> = () => {
     const { updateEmail,
         updatePassword,
         updateConfirmPassWord,
         updateUsername,
         updateShowLogin,
         updateShowSignUp, state, submitLoginForm, submitSignIn } = useLoginSignUp()
+
     return (<Container>
         <ImageSection />
         <Section>
@@ -39,6 +42,24 @@ export const LoginSignUp:FC<{path:string}> = () => {
                         submitSignIn={submitSignIn}
 
                     />}
+                <Footer>
+
+                    {!state.showSignUp ?
+                        (
+                            <>
+                                <Button label="Log In" onClick={submitSignIn} />
+                                <p className='message'>Don't have Account? <span className='link' onClick={updateShowSignUp}>Sign Up</span> </p>
+                            </>
+                        )
+                        :
+
+                        (
+                            <>
+                                <Button label="Sign Up" onClick={submitLoginForm} />
+                                <p className='message'>Already have an account? <span className='link' onClick={updateShowLogin}>Log in</span> </p>
+                            </>)
+                    }
+                </Footer>
             </FormCol>
         </Section>
     </Container>)
