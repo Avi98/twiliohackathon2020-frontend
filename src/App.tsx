@@ -7,15 +7,16 @@ import { UITrigger } from './context/uiTrigger';
 import { Profile } from './screens/Profile';
 import { ENV } from './config';
 import { Store } from './context/store';
+import { NavBar } from './components/navBar';
 
 
-const AlginCenter = Styled.div`
+export const AlginCenter = Styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
   height: 100vh;
 `
-interface IPath {
+export interface IPath {
   path: string,
   children?: any
 }
@@ -25,7 +26,6 @@ const UnAuthorize: FC<IPath> = () => <AlginCenter>
   <LoginSignUp path="/" />
 </AlginCenter>
 
-const Home: FC<IPath> = () => <h2>home Routes working fine</h2>
 const AuthRoutes: FC<IPath> = ({ path, children }: IPath) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
@@ -39,20 +39,12 @@ const AuthRoutes: FC<IPath> = ({ path, children }: IPath) => {
   else {
     return (
       <div>
-        <AlginCenter>
-          {children}
-        </AlginCenter>
+        {children}
       </div>
     )
   }
   return <></>
 }
-
-// <AlginCenter>
-//   {/* <Dashbord path='dash'/> */}
-// </AlginCenter>
-
-
 
 
 const PageNotFound: FC<{ path: string }> = () => <AlginCenter>Page Not Found</AlginCenter>
@@ -66,13 +58,15 @@ class App extends Component {
             <Router>
               <UnAuthorize path="/" />
               <AuthRoutes path="user" >
-                <Profile path="profile" />
-                <Home path="home" />
+                <NavBar path="home">
+                  
+                </NavBar>
+                  <Profile path="profile" />               
               </AuthRoutes>
               <PageNotFound path="*" />
             </Router>
           </>
-        </UITrigger >
+        </UITrigger>
       </Store>
     );
   }
