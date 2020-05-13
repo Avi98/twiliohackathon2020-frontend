@@ -64,5 +64,18 @@ export interface IProfileProps {
 }
 
 export interface IImageUpload extends IProfileProps{
-
+    
 }
+
+
+export type profileData = {
+    current_location: string
+    description: string
+    first_name: string
+    id: number
+    image: string
+    last_name: string
+    mobile: string
+    user: number
+    user_id: number
+  }

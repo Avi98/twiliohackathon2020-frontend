@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { AuthApi } from "../server/api";
 
-export const useFetch = (url: string) => {
+type status = 'start_loading' | 'pending' | 'done_loading' | ''
+export const useFetch = (url: string): { data: any, error: string, status: status } => {
     const [data, setData] = useState<object>({})
     const [error, setError] = useState<string>('')
-    const [status, setStatus] = useState<'start_loading' | 'pending' | 'done_loading'>('done_loading')
+    const [status, setStatus] = useState<status>('')
 
     useEffect(() => {
         const controller = new AbortController()
@@ -13,12 +14,10 @@ export const useFetch = (url: string) => {
                 setStatus('start_loading')
                 const data = await AuthApi.get(url)
                 if (!controller.signal.aborted) {
-                    debugger
-                    setData(data.data)
+                    setData(data)
                     setStatus('done_loading')
                 }
             } catch (error) {
-                debugger
                 if (!controller.signal.aborted) {
                     setError(error)
                     setStatus('done_loading')
