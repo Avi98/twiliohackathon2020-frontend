@@ -51,9 +51,9 @@ z-index: 2;
 }
 
 `
-export const Preview = Styled.div`
-width:92px;
-height: 92px;
+export const Preview = Styled.div<{width?:string, height?:string}>`
+width:${p => p.width || '92px'};
+height: ${p => p.height || '92px'};
 position:relative;
 border-radius: 100%;
 border: 6px solid #F8F8F8;

@@ -90,7 +90,6 @@ export const useLoginSignUp = () => {
                     updateUserSession && updateUserSession(respose.user)
                     localStorage.setItem('token', respose.token);
                     const profile = await Api.get('/profile', param)
-                    debugger
                     if(profile.profile){
                         saveUserProfile && saveUserProfile(profile.profile)
                         // setProfileData(profile.profile)

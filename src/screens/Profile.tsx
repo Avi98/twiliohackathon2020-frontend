@@ -25,20 +25,16 @@ const Profile: React.SFC<ProfileProps> = () => {
         validationSchema: ProfileSchema,
         onSubmit: (values) => {
             const form_data:any = new FormData()
+            form_data.append('user_id', userSession?.user.id)
             //@ts-ignore
-            values.image && form_data.append('image', values.image, values.image.name)
+            values.image && form_data.append('image', values.image)
             form_data.append('first_name', values.first_name)
             form_data.append('last_name', values.last_name)
             form_data.append('mobile', values.mobile)            
             values.current_location && form_data.append('current_location', values.current_location)
             values.description && form_data.append('description', values.description)
-            const payload = [...form_data].reduce((acc:any, [key, value]:any)=>{
-                return{
-                    ...acc,
-                    [key]: value
-                }
-            },{})
-            AuthApi.post(`/profile`, {...payload, user_id:  Number(userSession?.user.id)}, {
+
+            AuthApi.post(`/profile`, form_data, {
                     'content-type': 'multipart/form-data'
                 
             })
